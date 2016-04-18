@@ -21,6 +21,7 @@ public class AuthenticationFilter implements Filter{
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		//In the init method of the Filter
 		System.out.println("In init of filter");
 		
 	}
@@ -68,7 +69,7 @@ public class AuthenticationFilter implements Filter{
 	@Override
 	public void destroy() {
 		
-		
+		System.out.println("In destroy method");
 	}
 
 }
