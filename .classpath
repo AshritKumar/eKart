@@ -9,23 +9,23 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="src" path="/jdbcEx"/>
-	<classpathentry kind="lib" path="/home/nani/apache-tomcat-7.0.54/lib/servlet-api.jar" sourcepath="/home/nani/Downloads/apache-tomcat-8.0.33-src.zip"/>
+	<classpathentry kind="lib" path="C:/Ashrit backup/Ash/apache-tomcat-8.0.33/lib/servlet-api.jar" sourcepath="/home/nani/Downloads/apache-tomcat-8.0.33-src.zip"/>
 	<classpathentry kind="lib" path="/home/nani/apache-tomcat-7.0.54/lib/mysql-connector-java-5.1.32-bin.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/nani/java/gson-2.2.2.jar">
+	<classpathentry kind="lib" path="C:/Users/samudralaa/Downloads/gson-2.3.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/nani/java/taglibs-standard-impl-1.2.5.jar">
+	<classpathentry kind="lib" path="C:/Users/samudralaa/Downloads/taglibs-standard-impl-1.2.5.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/nani/java/jstl-1.2.jar">
+	<classpathentry kind="lib" path="C:/Ashrit backup/Ash/jstl/jstl.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
