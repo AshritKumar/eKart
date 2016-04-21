@@ -32,7 +32,7 @@ public class ValidateUser extends HttpServlet {
 				session.setAttribute("userName", userName);
 				System.out.println(session.getId());
 				System.out.println("is new ? "+session.isNew());
-				session.setMaxInactiveInterval(600);
+				session.setMaxInactiveInterval(1800);
 				if(remember!=null &&remember.equalsIgnoreCase("on")){
 					System.out.println("Setting cookies !!");
 					Cookie ckUserName = new Cookie("userName", userName);

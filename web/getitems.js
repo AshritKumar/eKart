@@ -70,7 +70,7 @@ $("document").ready(function(){
 		    	var square = $("<div />", {
 				    class: 'col-md-6 col-xs-12',
 				    style: "background-color:lavenderblush",
-				    id: "itemBox"
+				    id: "itemBox"+map[i].itemID
 				});
 		    	var iDetails = $("<p />", {
 				});
@@ -120,7 +120,7 @@ function addCart(itemID){
 	        $("#addCart").hide();
 	    },
 	    success: function (data) {
-	        $("#itemBox").append("Item added to cart");
+	        $("#itemBox"+itemID).append("Item added to cart");
 	        
 	    },
 	    error: function (xhr, status, thrownError) {

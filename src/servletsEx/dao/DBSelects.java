@@ -17,7 +17,7 @@ import servletsEx.utils.DBUtils;
 public class DBSelects {
 
 	public Map<Integer, String> getCatagoryList(Integer catID) {
-		Connection con = DBUtils.getDBConnection();
+		Connection con = DBUtils.getDBConnection("sqlserver");
 		////Debugging Connetions///////////
 		
 		/*System.out.println("In DB selects get cat list . . . .");
@@ -69,7 +69,7 @@ public class DBSelects {
 	}
 	
 	public Map getSubCatagoryList(Integer catID) {
-		Connection con = DBUtils.getDBConnection();
+		Connection con = DBUtils.getDBConnection("sqlserver");
 		/*System.out.println("In DB selects get sub CatList list . . . .");
 		System.out.println(con.hashCode());
 		System.out.println(con);*/
@@ -115,7 +115,7 @@ public class DBSelects {
 	}
 	
 	public List<ItemBean> getItems(Integer subCatID) {
-		Connection con = DBUtils.getDBConnection();
+		Connection con = DBUtils.getDBConnection("sqlserver");
 		/*System.out.println("In DB selects get sub CatList list . . . .");
 		System.out.println(con.hashCode());
 		System.out.println(con);*/

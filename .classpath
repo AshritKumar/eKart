@@ -8,13 +8,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="src" path="/jdbcEx"/>
-	<classpathentry kind="lib" path="C:/Ashrit backup/Ash/apache-tomcat-8.0.33/lib/servlet-api.jar" sourcepath="/home/nani/Downloads/apache-tomcat-8.0.33-src.zip"/>
-	<classpathentry kind="lib" path="/home/nani/apache-tomcat-7.0.54/lib/mysql-connector-java-5.1.32-bin.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Ashrit backup/Ash/apache-tomcat-8.0.33/lib/servlet-api.jar" sourcepath="C:/Ashrit backup/Ash/apache-tomcat-8.0.33-src.zip"/>
 	<classpathentry kind="lib" path="C:/Users/samudralaa/Downloads/gson-2.3.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
@@ -30,5 +24,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Ashrit backup/Ash/jdbc/Microsoft JDBC Driver 4.0 for SQL Server/sqljdbc_4.0/enu/sqljdbc4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

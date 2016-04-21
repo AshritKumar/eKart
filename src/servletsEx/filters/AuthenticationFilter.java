@@ -34,33 +34,44 @@ public class AuthenticationFilter implements Filter{
 		HttpServletResponse res = (HttpServletResponse)response;
 		System.out.println("Filtering the login request.....");
 		
-		Cookie cookies[] = req.getCookies();
-		String userName ="", password="";
-		if(cookies!=null){
-			System.out.println("getting Cookies");
-			for(Cookie ck : cookies){
-				if(ck.getName().equalsIgnoreCase("userName")){
-					userName=ck.getValue();
-					System.out.println("User Name - "+userName);
-				}
-				
-				if(ck.getName().equalsIgnoreCase("password")){
-					password=ck.getValue();
-					System.out.println("password - "+password);
+		HttpSession session = req.getSession(false);
+		if(session!=null){
+			System.out.println(session.getId());
+			String userName = (String)session.getAttribute("userName");
+			System.out.println("Authentication Filter : Already logged in as "+userName+" forwarding to get items page . . ");
+			RequestDispatcher rd = request.getRequestDispatcher("getitems.jsp");
+			rd.forward(request, response);
+		}
+		else{
+			Cookie cookies[] = req.getCookies();
+			String userName ="", password="";
+			if(cookies!=null){
+				System.out.println("getting Cookies");
+				for(Cookie ck : cookies){
+					if(ck.getName().equalsIgnoreCase("userName")){
+						userName=ck.getValue();
+						System.out.println("User Name - "+userName);
+					}
+					
+					if(ck.getName().equalsIgnoreCase("password")){
+						password=ck.getValue();
+						System.out.println("password - "+password);
+					}
 				}
 			}
-		}
 
-		if(!userName.isEmpty() && !password.isEmpty()){
-			if(userName.equals("ashrit") && password.equals("ashrit")){
-				System.out.println("Cookies set forwarding request to get items page !!"+" user "+userName);
-				HttpSession session = req.getSession();
-				session.setAttribute("userName", userName);
-				RequestDispatcher rd = request.getRequestDispatcher("getitems.jsp");
-				rd.forward(request, response);
-				//response.sendRedirect("getitems.jsp");
+			if(!userName.isEmpty() && !password.isEmpty()){
+				if(userName.equals("ashrit") && password.equals("ashrit")){
+					System.out.println("Cookies set forwarding request to get items page !!"+" user "+userName);
+					session = req.getSession();
+					session.setAttribute("userName", userName);
+					RequestDispatcher rd = request.getRequestDispatcher("getitems.jsp");
+					rd.forward(request, response);
+					//response.sendRedirect("getitems.jsp");
+				}
 			}
 		}
+		
 		
 		chain.doFilter(request, response);
 		
