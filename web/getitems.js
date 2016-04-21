@@ -65,30 +65,68 @@ $("document").ready(function(){
 		var row = $("<div />", {
 		    class: 'row'
 		});
-		
-
-		
 		    //add columns to the the temp row object
 		    for (var i = 0; i < map.length; i++) {
 		    	var square = $("<div />", {
 				    class: 'col-md-6 col-xs-12',
-				    style: "background-color:lavenderblush"
+				    style: "background-color:lavenderblush",
+				    id: "itemBox"
 				});
 		    	var iDetails = $("<p />", {
 				});
+		    	square.append("<div hidden id=\"addCart\">adding to cart...</div>");
+		    	
 		    	iDetails.append("<h4>"+map[i].itemName+"</h4><br>");
-		    	iDetails.append("<b>Description: </b>"+map[i].itemDesc+"<br>");
+		    	//iDetails.append("<b>Description: </b>"+map[i].itemDesc+"<br>");
 		    	iDetails.append("<b>price: </b>"+map[i].price+"<br>");
 		    	iDetails.append("<b>Stock: </b>"+map[i].stock+"<br>");
-		    	square.append(iDetails)
+		    	square.append(iDetails);
 		    	//square.append("<p>Hiiiii</p>")
+		    	square.append("<button type=\"button\" class=\"btn btn-success btn-md\" id=\"btnAddCart\" onclick=\"addCart("+map[i].itemID+") \">add to cart</button> &nbsp;");
+		    	//square.append("<button type=\"button\" class=\"btn btn-warning btn-md\" onclick=\"viewDetails("+map[i].itemID+") id=\"viewDetails\" \">view details</button>");
 		        row.append(square.clone());
 		    }
 		    //clone the temp row object with the columns to the wrapper
 		    for (var i = 0; i < 1; i++) {
 		        $("#itemList").append(row.clone());
 		    }
-		
-		
+		    
 	}
+	 
 });
+
+
+
+function addCart(itemID){
+	//alert(itemID);
+	$.ajax({
+		method : "GET",
+		url:"cartManager",
+		data:{"itemID":itemID},
+/*		xhr: function(){
+			var xhr = new XMLHttpRequest();
+			xhr.addEventListener("progress", function(e){
+				if (evt.lengthComputable) {
+	                var percentComplete = evt.loaded / evt.total;
+	                progressElem.html(Math.round(percentComplete * 100) + "%");
+	            }
+				
+			},false);
+		},*/
+		beforeSend: function () {
+	        $("#addCart").show();
+	    },
+	    complete: function () {
+	        $("#addCart").hide();
+	    },
+	    success: function (data) {
+	        $("#itemBox").append("Item added to cart");
+	        
+	    },
+	    error: function (xhr, status, thrownError) {
+	        alert("Some error occured . . .");
+	        //alert(thrownError);
+	    }
+	});
+}
+
