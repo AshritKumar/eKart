@@ -170,5 +170,58 @@ public class DBSelects {
 		}
 		return itemList;
 	}
+	
+	
+	public ItemBean getItem(Integer itemID) {
+		Connection con = DBUtils.getDBConnection("sqlserver");
+		/*System.out.println("In DB selects get sub CatList list . . . .");
+		System.out.println(con.hashCode());
+		System.out.println(con);*/
+		ResultSet rs = null;
+		Statement stmt = null;
+		List<ItemBean> itemList = new ArrayList<>();
+		String query = "select * from items where itemID = " + itemID;
+		
+		System.out.println(query);
+		ItemBean ib = new ItemBean();
+		if (con != null) {
+			try {
+				stmt = con.createStatement();
+
+				rs = stmt.executeQuery(query);
+				while (rs.next()) {
+					
+					ib.setItemID(rs.getInt(1));
+					ib.setItemName(rs.getString(2));
+					ib.setItemDesc(rs.getString(3));
+					ib.setCatID(rs.getInt(4));
+					ib.setSubCatID(rs.getInt(5));
+					ib.setStock(rs.getInt(6));
+					ib.setSupID(rs.getInt(7));
+					ib.setPrice(rs.getDouble(8));	
+				}
+				/*Gson g = new Gson();
+				String catMap = g.toJson(catList);
+				// System.out.println(catMap);
+*/
+				rs.close();
+
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				
+			} finally {
+				try {
+					System.out.println("Closing connection");
+					stmt.close();
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return ib;
+	}
 
 }

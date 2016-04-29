@@ -74,7 +74,6 @@ $("document").ready(function(){
 				});
 		    	var iDetails = $("<p />", {
 				});
-		    	square.append("<div hidden id=\"addCart\">adding to cart...</div>");
 		    	
 		    	iDetails.append("<h4>"+map[i].itemName+"</h4><br>");
 		    	//iDetails.append("<b>Description: </b>"+map[i].itemDesc+"<br>");
@@ -82,7 +81,7 @@ $("document").ready(function(){
 		    	iDetails.append("<b>Stock: </b>"+map[i].stock+"<br>");
 		    	square.append(iDetails);
 		    	//square.append("<p>Hiiiii</p>")
-		    	square.append("<button type=\"button\" class=\"btn btn-success btn-md\" id=\"btnAddCart\" onclick=\"addCart("+map[i].itemID+") \">add to cart</button> &nbsp;");
+		    	square.append("<button type=\"button\" class=\"btn btn-success btn-md\" id=\"btnAddCart\"  data-toggle=\"modal\"  onclick=\"addCart("+map[i].itemID+") \">add to cart</button> &nbsp;");
 		    	//square.append("<button type=\"button\" class=\"btn btn-warning btn-md\" onclick=\"viewDetails("+map[i].itemID+") id=\"viewDetails\" \">view details</button>");
 		        row.append(square.clone());
 		    }
@@ -102,7 +101,7 @@ function addCart(itemID){
 	$.ajax({
 		method : "GET",
 		url:"cartManager",
-		data:{"itemID":itemID},
+		data:{"addItemID":itemID},
 /*		xhr: function(){
 			var xhr = new XMLHttpRequest();
 			xhr.addEventListener("progress", function(e){
@@ -114,13 +113,33 @@ function addCart(itemID){
 			},false);
 		},*/
 		beforeSend: function () {
-	        $("#addCart").show();
+	        //$("#addCart").show();
 	    },
 	    complete: function () {
-	        $("#addCart").hide();
+	       // $("#addCart").hide();
 	    },
 	    success: function (data) {
-	        $("#itemBox"+itemID).append("Item added to cart");
+	    	var dat = JSON.parse(data);
+	    		if(dat.status){
+	    			 var k = $("#itemBox"+itemID+" button");
+	 	 	        //alert(k);
+	 	 	        k.html('added to cart');
+	 	 	        k.prop('disabled',true);
+	 	 	        //alert(data);
+	 	 	      var t = $("#addCartModel p");
+	 	 	      t.html('Item added to cart');
+	 	 	      $("#addCartModel").modal();
+	 	 	       var btnData = $("#btnCart")
+	 	 	        btnData.html('<span class="glyphicon glyphicon-shopping-cart" id="spnCart"></span>Cart '+dat.size);
+	    		}
+	    		else{
+	    			var t = $("#addCartModel p")
+	    			t.html('Item is already added to cart');
+	    			 $("#addCartModel").modal();
+	    		}
+	    		
+	    	
+	       
 	        
 	    },
 	    error: function (xhr, status, thrownError) {
