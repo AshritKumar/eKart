@@ -1,14 +1,53 @@
 package servletsEx.beans;
 
+import java.util.Date;
+
+import javax.annotation.Generated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
+
+
+@Entity
+@Table(name="items")
 public class ItemBean {
+	@Id
+	//@TableGenerator(name="incrementID",initialValue=182)
+	@GenericGenerator(name="increment",strategy="increment")
+	@GeneratedValue(generator="increment")
 	private Integer itemID;
+	
 	private String itemName;
+	
+	@Lob
 	private String itemDesc;
-	private Integer catID;
+	
+	@OneToOne
+	@JoinColumn(name="catagoryID")
+	private CatagoryBean catagory;
+	
 	private Integer subCatID;
 	private Integer stock;
 	private Integer supID;
 	private Double price;
+	
+	@Transient
+	//@Temporal(TemporalType.DATE)
+	private static Date date;
+	
+	
 	public Integer getItemID() {
 		return itemID;
 	}
@@ -27,12 +66,7 @@ public class ItemBean {
 	public void setItemDesc(String itemDesc) {
 		this.itemDesc = itemDesc;
 	}
-	public Integer getCatID() {
-		return catID;
-	}
-	public void setCatID(Integer catID) {
-		this.catID = catID;
-	}
+
 	public Integer getSubCatID() {
 		return subCatID;
 	}
@@ -56,6 +90,15 @@ public class ItemBean {
 	}
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+	
+	
+	
+	public CatagoryBean getCatagory() {
+		return catagory;
+	}
+	public void setCatagory(CatagoryBean catagory) {
+		this.catagory = catagory;
 	}
 	@Override
 	public int hashCode() {
