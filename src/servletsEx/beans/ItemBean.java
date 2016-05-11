@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,10 +35,15 @@ public class ItemBean {
 	@Lob
 	private String itemDesc;
 	
-	@OneToOne
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="catagoryID")
 	private CatagoryBean catagory;
 	
+	@OneToOne
+	@JoinColumn(name="subCatID")
+	private SubCatagoryBean subCatagory;
+	
+	@Transient
 	private Integer subCatID;
 	private Integer stock;
 	private Integer supID;
@@ -134,6 +140,18 @@ public class ItemBean {
 	@Override
 	public String toString() {
 		return  itemID+" : "+itemName;
+	}
+	public SubCatagoryBean getSubCatagory() {
+		return subCatagory;
+	}
+	public void setSubCatagory(SubCatagoryBean subCatagory) {
+		this.subCatagory = subCatagory;
+	}
+	public static Date getDate() {
+		return date;
+	}
+	public static void setDate(Date date) {
+		ItemBean.date = date;
 	}
 	
 	

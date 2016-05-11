@@ -26,6 +26,7 @@
          <mapping class="servletsEx.beans.ItemBean"/>
          <mapping class="servletsEx.beans.UserBean"/>
          <mapping class="servletsEx.beans.CatagoryBean"/>
+         <mapping class="servletsEx.beans.SubCatagoryBean"/>
        
    </session-factory>
     

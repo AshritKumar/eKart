@@ -1,9 +1,13 @@
 package servletsEx.beans;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +19,9 @@ public class CatagoryBean {
 	private Integer catagoryID;
 	
 	private String catagoryName;
+	
+	@OneToMany(mappedBy="catagory")
+	private Collection<SubCatagoryBean> subCatagory = new ArrayList<>();
 
 	public Integer getCatagoryID() {
 		return catagoryID;

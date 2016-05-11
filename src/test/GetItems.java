@@ -3,6 +3,7 @@ package test;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -20,15 +21,25 @@ public class GetItems {
 		
 		//System.out.println(ib.getItemName());
 		//System.out.println(ib.getItemDesc());
-		
-		Criteria crit = hs.createCriteria(ItemBean.class);
-		crit.add(Restrictions.like("itemName", "%lenovo%"));
-		List<ItemBean>items = crit.list();
-		
-		for(ItemBean item: items){
-			System.out.print(item.getItemName()+" - "+item.getPrice());
-			System.out.println();
+		try{
+			Criteria crit = hs.createCriteria(ItemBean.class);
+			crit.add(Restrictions.like("itemName", "%lenovo%"));
+			List<ItemBean>items = crit.list();
+			//hs.close();
+			for(ItemBean item: items){
+				System.out.print(item.getItemName()+" - "+item.getPrice()+" - "+item.getCatagory().getCatagoryName()+" - "+item.getSubCatagory().getSubCatName());
+				System.out.println();
+			}
 		}
+		catch(HibernateException e){
+			e.printStackTrace();
+		}
+		
+		finally{
+			hs.close();
+			sf.close();
+		}
+	
 		
 	}
 
