@@ -32,6 +32,7 @@ public class GetItems {
 			}
 		}
 		catch(HibernateException e){
+			System.out.println("In exception");
 			e.printStackTrace();
 		}
 		
